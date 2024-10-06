@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: B1
+  cloud:
+    config:
+      uri: http://localhost:8888
+
+student:
+  data:
+    - name: "Nguyen Van A"
+      age: 20
+      address: "Hanoi"
+    - name: "Tran Thi B"
+      age: 22
+      address: "Ho Chi Minh City"
