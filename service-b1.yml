@@ -1,15 +1,13 @@
 spring:
   application:
-    name: B1
+    name: ServiceB1
   cloud:
     config:
       uri: http://localhost:8888
 
-student:
-  data:
-    - name: "Nguyen Van A"
-      age: 20
-      address: "Hanoi"
-    - name: "Tran Thi B"
-      age: 22
-      address: "Ho Chi Minh City"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8081

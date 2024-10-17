@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ServiceA1
+          uri: lb://ServiceA1
+          predicates:
+            - Path=/a1/**
+        - id: ServiceA2
+          uri: lb://ServiceA2
+          predicates:
+            - Path=/a2/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8080
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG

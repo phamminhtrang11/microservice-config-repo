@@ -8,5 +8,12 @@ spring:
         git:
           uri: https://github.com/phamminhtrang11/microservice-config-repo
           default-label: main
+          search-paths: .
   application:
-    name: config-server
+    name: configDemo
+  spring:
+    profiles:
+      active: default
+
+
+
