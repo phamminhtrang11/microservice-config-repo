@@ -4,38 +4,43 @@ spring:
   cloud:
     gateway:
       routes:
-        # Định tuyến từ Gateway tới ServiceA1
+
         - id: ServiceA1
           uri: lb://ServiceA1
-          # Sử dụng lb:// để liên kết với dịch vụ đăng ký trong Eureka
-          predicates:
-            - Path=/a1/**  # Ánh xạ các yêu cầu đến đường dẫn /a1/** tới ServiceA1
 
-        # Định tuyến từ Gateway tới ServiceB1 (Sửa đường dẫn)
+          predicates:
+            - Path=/a1/**
+
+
         - id: ServiceB1
           uri: lb://ServiceB1
-          # Sử dụng lb:// để liên kết với dịch vụ đăng ký trong Eureka
           predicates:
-            - Path=/a1/students-b1/**  # Ánh xạ các yêu cầu đến đường dẫn /a1/students-b1/** tới ServiceB1
+            - Path=/a1/students-b1/**
           filters:
-            - RewritePath=/a1/students-b1/(?<segment>.*), /students/${segment}  # Đổi đường dẫn từ /a1/students-b1 thành /students
+            - RewritePath=/a1/students-b1/(?<segment>.*), /students/${segment}
 
-        # Định tuyến cho ServiceA2 (ví dụ)
         - id: ServiceA2
           uri: lb://ServiceA2
 
           predicates:
             - Path=/a2/**
 
+        - id: ServiceB2
+          uri: lb://ServiceB2
+          predicates:
+            - Path=/a2/students-b2/**
+          filters:
+            - RewritePath=/a2/students-b2/(?<segment>.*), /students/${segment}
+
   eureka:
     client:
       service-url:
-        defaultZone: http://localhost:8761/eureka/  # Kết nối đến Eureka Server
+        defaultZone: http://localhost:8761/eureka/
 
 server:
-  port: 8080  # Cổng của Gateway
+  port: 8080
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG  # Log mức độ DEBUG để kiểm tra thông tin chi tiết
-    org.springframework.web: DEBUG  # Log mức độ DEBUG cho các yêu cầu web
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
