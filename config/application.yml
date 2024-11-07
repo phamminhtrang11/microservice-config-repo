@@ -10,7 +10,7 @@ spring:
           default-label: main
           search-paths: .
   application:
-    name: configDemo
+    name: microserviceDemo
   spring:
     profiles:
       active: default
