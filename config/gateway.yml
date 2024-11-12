@@ -16,8 +16,7 @@ spring:
           uri: lb://ServiceB1
           predicates:
             - Path=/a1/students-b1/**
-          filters:
-            - RewritePath=/a1/students-b1/(?<segment>.*), /students/${segment}
+
 
         - id: ServiceA2
           uri: lb://ServiceA2
@@ -38,7 +37,7 @@ spring:
         defaultZone: http://localhost:8761/eureka/
 
 server:
-  port: 8080
+  port: 8011
 
 logging:
   level:
